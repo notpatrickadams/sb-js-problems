@@ -6,7 +6,11 @@
  */
 
 function repeat(str, multipler) {
-
+    let result = "";
+    for (let i = 0; i < multipler; i++) {
+        result += str;
+    }
+    return result;
 }
 
 /* removeFromString
@@ -19,7 +23,13 @@ function repeat(str, multipler) {
  */
 
 function removeFromString(str, index, count) {
-
+    let result = "";
+    for (let i = 0; i < str.length; i++) {
+        if (i < index || i >= index + count) {
+            result += str[i];
+        }
+    }
+    return result;
 }
 
 /* reverse
@@ -34,7 +44,13 @@ function removeFromString(str, index, count) {
 */
 
 function reverse(arr) {
-
+    let temp;
+    for (let i = 0; i < arr.length / 2; i++) {
+        temp = arr[i];
+        arr[i] = arr[arr.length - 1 - i];
+        arr[arr.length - 1 - i] = temp
+    }
+    return arr;
 }
 
 /* min
@@ -43,7 +59,11 @@ function reverse(arr) {
 */
 
 function min(arr){
-
+    let min = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (min > arr[i]) min = arr[i];
+    }
+    return min;
 }
 
 /*
@@ -59,7 +79,11 @@ function min(arr){
 
 
 function slice(arr, start, stop){
-
+    let result = [];
+    for (let i = start; i < stop && i < arr.length; i++) {
+        result.push(arr[i]);
+    }
+    return result;
 }
 
 /*
@@ -70,7 +94,11 @@ function slice(arr, start, stop){
 */
 
 function keys(obj){
-
+    let result = [];
+    for (let key in obj) {
+        result.push(key);
+    }
+    return result;
 }
 
 /*
@@ -80,7 +108,11 @@ function keys(obj){
 */
 
 function values(obj){
-
+    let result = [];
+    for (let key in obj) {
+        result.push(obj[key]);
+    }
+    return result;
 }
 
 
@@ -93,7 +125,15 @@ function values(obj){
 */
 
 function swapKeyAndValue(obj, key){
-  return "need to complete";
+    let result = {};
+    for (let k in obj) {
+        if (k === key) {
+            result[obj[k]] = k;
+        } else {
+            result[k] = obj[k];
+        }
+    }
+    return result;
 }
 
 // Section Two: Problem Solving
@@ -116,7 +156,11 @@ function swapKeyAndValue(obj, key){
 */
 
 function multiples(x, n){
-
+    let result = [];
+    for (let i = 1; i <= n; i++) {
+        result.push(x * i);
+    }
+    return result;
 }
 
 /*
@@ -131,7 +175,15 @@ function multiples(x, n){
 */
 
 function pluck(arr, key){
-
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (key in arr[i]) {
+            result.push(arr[i][key]);
+        } else {
+            result.push(-1);
+        }
+    }
+    return result;
 }
 /*
     Write a function called twoHighest that takes an array of numbers (arr) and returns the two highest numbers within the array.  
@@ -142,7 +194,17 @@ function pluck(arr, key){
 */
 
 function twoHighest(arr){
-
+    let highest = arr[0];
+    let secondHighest = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (highest < arr[i]) {
+            secondHighest = highest;
+            highest = arr[i];
+        } else if (secondHighest < arr[i]) {
+            secondHighest = arr[i];
+        }
+    }
+    return [secondHighest, highest];
 }
 
 /*
@@ -154,7 +216,16 @@ function twoHighest(arr){
 */
 
 function minMaxKeyInObject(obj){
-
+    let lowestKey = Number.MAX_VALUE;
+    let highestKey = Number.MIN_VALUE;
+    for (let key in obj) {
+        if (lowestKey > Number(key)) {
+            lowestKey = Number(key);
+        } else if (highestKey < Number(key)) {
+            highestKey = Number(key);
+        }
+    }
+    return [lowestKey, highestKey];
 }
 
 /*
@@ -167,7 +238,11 @@ function minMaxKeyInObject(obj){
 */
 
 function stringFromObject(obj){
-
+    let result = "";
+    for (let key in obj) {
+        result += `${key} = ${obj[key]}, `;
+    }
+    return result.slice(0, -2);
 }
 
 /* 
@@ -179,5 +254,11 @@ function stringFromObject(obj){
 */
 
 function countNumbers(arr){
-
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (!isNaN(Number(arr[i]))) {
+            count++;
+        }
+    }
+    return count;
 }
